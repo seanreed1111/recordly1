@@ -5,5 +5,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :artists
+  accepts_nested_attributes_for :artists
+  has_many :albums
+  accepts_nested_attributes_for :albums
+
 
 end
