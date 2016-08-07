@@ -11,21 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160806225147) do
+ActiveRecord::Schema.define(version: 20160807182823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "album_collections", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "album_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "album_collections", ["album_id"], name: "index_album_collections_on_album_id", using: :btree
+  add_index "album_collections", ["user_id"], name: "index_album_collections_on_user_id", using: :btree
 
   create_table "albums", force: :cascade do |t|
     t.string   "name"
     t.integer  "artist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "user_id"
   end
 
   add_index "albums", ["artist_id"], name: "index_albums_on_artist_id", using: :btree
-  add_index "albums", ["user_id"], name: "index_albums_on_user_id", using: :btree
 
   create_table "artists", force: :cascade do |t|
     t.string   "name"
@@ -62,8 +70,9 @@ ActiveRecord::Schema.define(version: 20160806225147) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "album_collections", "albums"
+  add_foreign_key "album_collections", "users"
   add_foreign_key "albums", "artists"
-  add_foreign_key "albums", "users"
   add_foreign_key "songs", "albums"
   add_foreign_key "songs", "artists"
 end
