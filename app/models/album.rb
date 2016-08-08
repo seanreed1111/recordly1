@@ -6,5 +6,5 @@ class Album < ActiveRecord::Base
   accepts_nested_attributes_for :users
 
   has_many :songs
-
+  has_many :favorites, as: :favoritable #polymorphic
 end
