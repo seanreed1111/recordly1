@@ -1,6 +1,6 @@
-class CreateAlbumCollections < ActiveRecord::Migration
+class CreateCollections < ActiveRecord::Migration
   def change
-    create_table :album_collections do |t|
+    create_table :collections do |t|
       t.references :user, index: true, foreign_key: true
       t.references :album, index: true, foreign_key: true
 

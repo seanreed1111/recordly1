@@ -9,24 +9,24 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-# artists = []
-# for i in 1..10
-#   artist = Artist.create(name: FFaker::Music.artist)
-#   for j in 1..rand(3..6)
-#     album = artist.albums.create(name: FFaker::Music.album)
-#     for k in 1...rand(6..10)
-#       song = album.songs.create(name: FFaker::Music.song)
-#     end
-#   end
-#   artists << artist
-# end
+artists = []
+for i in 1..10
+  artist = Artist.create(name: FFaker::Music.artist)
+  for j in 1..rand(3..6)
+    album = artist.albums.create(name: FFaker::Music.album)
+    for k in 1...rand(6..10)
+      song = album.songs.create(name: FFaker::Music.song)
+    end
+  end
+  artists << artist
+end
 
-#artists = Artist.all
+artists = Artist.all
 
-# for i in 1..7
-#   User.create(
-#     email: FFaker::Internet.email,
-#     password: 'password',
-#     password_confirmation: 'password'
-#     )
-# end
+for i in 1..7
+  User.create(
+    email: FFaker::Internet.email,
+    password: 'password',
+    password_confirmation: 'password'
+    )
+end

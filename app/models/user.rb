@@ -4,10 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :artists, through: :albums
-
-  has_many :albums, through: :album_collection
-  accepts_nested_attributes_for :albums
-
+  has_many :collections
+  has_many :albums, through: :collections
 
 end
