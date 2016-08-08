@@ -1,3 +1,23 @@
+Validations
+  Duplicate album/artist combos should not be allowed. 
+  Duplicate song titles on the same album should not be allowed.
+
+Site should haveat least one each of 
+  an AJAX GET 
+  and AJAX POST (or some other modification type verb).
+
+Implement search using pg search
+
+
+
+
+
+
+
+
+
+
+
 Recordly
 
 Implement Favorites 
@@ -59,10 +79,3 @@ Site should haveat least one each of
 
 Please provide a link for the GitHub repository and deployed url for the application so that we can see the various portions working.
 
-@@@@@ My notes
-There is going to be an album list available initially.
-Each user can decide to add one of these albums to their list
-
-
-Favoriting
-Each user can go through their 
