@@ -3,6 +3,7 @@ class Album < ActiveRecord::Base
 
   has_many :collections
   has_many :users, through: :collections
+  accepts_nested_attributes_for :users
 
   has_many :songs
 

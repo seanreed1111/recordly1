@@ -6,5 +6,5 @@ class User < ActiveRecord::Base
 
   has_many :collections
   has_many :albums, through: :collections
-
+  accepts_nested_attributes_for :albums
 end

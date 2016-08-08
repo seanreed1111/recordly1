@@ -1,11 +1,14 @@
 Recordly
 
-Recordly will be an application that allows for users to input and store their record collection.
-Each user can add a new album and input its data.
-  New Album must contain: 
-  album name
-  artist name (Songs with their titles are optional!)
-When complete, the user should be able to view their entire record collection 
+Implement Favorites 
+Favorites should be a polymorphic model
+can input string "album", "song", or "artist", along with associated id 
+into the favorites table. 
+favorites tables belong to user.
+
+User has many favorites, as: favoritable?
+
+how does thatAPI work for Polymorphic Models
 
 
 They should be able to "favorite" any 
@@ -14,6 +17,18 @@ They should be able to "favorite" any
   artist
   from any album in their collection 
 When complete, user should be able to view a list of their "favorite" albums and/or songs, etc.
+
+
+
+Recordly will be an application that allows for users to input and store their record collection.
+Each user can add a new album and input its data.
+  New Album must contain: 
+  album name
+  artist name (Songs with their titles are optional!)
+When complete, the user should be able to view their entire record collection 
+
+
+
 
 The site should have the following functionality:
 
