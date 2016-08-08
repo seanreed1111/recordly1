@@ -1,6 +1,6 @@
 Validations
   Duplicate album/artist combos should not be allowed. 
-  Duplicate song titles on the same album should not be allowed.
+
 
 Site should haveat least one each of 
   an AJAX GET 
@@ -25,7 +25,7 @@ Favorites should be a polymorphic model
 can input string "album", "song", or "artist", along with associated id 
 into the favorites table. 
 favorites tables belong to user.
-
+  Duplicate song titles on the same album should not be allowed.
 User has many favorites, as: favoritable?
 
 how does thatAPI work for Polymorphic Models

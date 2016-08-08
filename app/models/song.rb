@@ -36,10 +36,27 @@ class Song < ActiveRecord::Base
                   :ignoring => :accents
 
   def validate_uniqueness_of_song_in_album
-    return true if !self.album_id #no associated album
-    
-    #now check the album and make sure there are no
-    #songs on there with a duplicate name
+    return true if !self.album_id #no associated album so ok to save
+
+    #query all songs on album for a duplicate name
+    #if search comes back blank, ok to save
+    query = self.album.songs.where(name: self.name )
+
+    return query.blank? ? true : false
+
   end
+
+#   class User < ActiveRecord::Base
+#   has_many :parents # with keys and class_name pointing to the same class
+#   has_many :children # with keys and class_name pointing to the same class
+
+#   has_many :parents_children, through: :parents, source: :children
+
+#   def siblings
+#     self.parents_children.where("users.id != ?", self.id)
+#   end
+# end
+
+# d.siblings # what you want
 
 end
