@@ -10,6 +10,9 @@ class Album < ActiveRecord::Base
   has_many :songs
   accepts_nested_attributes_for :songs  
   has_many :favorites, as: :favoritable #polymorphic
+  validates :name, presence: true
+
+
 
   pg_search_scope :search_by_name, 
                   :against => :name,
@@ -17,5 +20,6 @@ class Album < ActiveRecord::Base
                   {
                     :tsearch => {:prefix => true, 
                                 :any_word => true}
-                  }
+                  },
+                  :ignoring => :accents
 end

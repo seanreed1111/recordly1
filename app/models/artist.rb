@@ -6,7 +6,6 @@ class Artist < ActiveRecord::Base
   accepts_nested_attributes_for :albums
   has_many :songs, through: :albums
   has_many :favorites, as: :favoritable #polymorphic
-
   validates :name, presence: true
 
   pg_search_scope :search_by_name, 
@@ -15,5 +14,6 @@ class Artist < ActiveRecord::Base
                   {
                     :tsearch => {:prefix => true, 
                                 :any_word => true}
-                  }
+                  },
+                  :ignoring => :accents
 end
