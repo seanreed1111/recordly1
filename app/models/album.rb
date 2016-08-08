@@ -19,5 +19,3 @@ class Album < ActiveRecord::Base
                                 :any_word => true}
                   }
 end
-
-end
