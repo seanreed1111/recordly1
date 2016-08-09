@@ -32,7 +32,9 @@ gem 'ffaker' #will use in production
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-  gem 'guard-rspec' #must then run "guard init rspec" from command line
+  gem 'guard-rspec' #must then run 
+  # bundle exec guard init rspec" from command line
+  # then bundle exec guard
   gem 'pry-rails', '~> 0.3.4'
 end
 
