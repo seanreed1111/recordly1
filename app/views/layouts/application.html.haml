@@ -1,0 +1,17 @@
+!!! 5
+
+%html
+  %head
+    %title Recordly1
+    =stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    =javascript_include_tag 'application', 'data-turbolinks-track' => true
+    =csrf_meta_tags
+
+  %body
+    .container
+      -flash.each do |key, value|
+        -#{.flash-key}
+          =value
+
+    .container
+      = yield
