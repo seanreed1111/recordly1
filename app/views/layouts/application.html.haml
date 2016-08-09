@@ -9,9 +9,20 @@
 
   %body
     .container
+      %h1 Welcome to Recordly!
+    .container
       -flash.each do |key, value|
-        -#{.flash-key}
-          =value
+        =key
+        =value
+
+    .container
+      -unless user_signed_in?
+        =link_to "Sign up", new_user_registration_path
+        =link_to "Sign in", new_user_session_path
+
+      -if user_signed_in?
+        Signed in as
+        = current_user.email
 
     .container
       = yield
