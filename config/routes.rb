@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :artists 
-  resources :albums
-  resources :songs
+  # resources :artists 
+  # resources :albums
+  # resources :songs
   resources :collections
   resources :favorites
 
-  root "albums#index"
+  root "collections#index"
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
