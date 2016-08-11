@@ -1,14 +1,11 @@
 class Collection < ActiveRecord::Base
   belongs_to :user
 
-
   belongs_to :album
   accepts_nested_attributes_for :album
 
+  validates_uniqueness_of :user_id, 
+                          scope: :album_id,
+                          message: "User can only own each unique album once"
 
-  # adds global search to Collection class
-  def self.search(search_string)
-    #verify that PgSearch sanitizes inputs
-    PgSearch.multisearch(search_string)
-  end
 end

@@ -21,7 +21,7 @@ Views:
     and albums index from each artist
   Songs Index from all of the user's albums, with album and artist
 
-Implement restriction directly in DB and rescue error
+Implement restrictions below directly in DB and rescue error
   Duplicate album/artist combos should not be allowed.
   Duplicate song titles on the same album should not be allowed. 
 
@@ -35,4 +35,5 @@ User should be able to "favorite" any
   artist
 from any album in their collection 
 
-When complete, user should be able to view a list of their "favorite" albums, artists, and songs, etc.
+When complete, user should be able to view 
+a list of their "favorite" albums, artists, and songs, etc.

@@ -1,6 +1,4 @@
 class Song < ActiveRecord::Base
-  before_save :validate_uniqueness_of_song_in_album
-
 
   include PgSearch
   multisearchable :against => [:name]
@@ -26,6 +24,7 @@ class Song < ActiveRecord::Base
 
  
   #class method. Exact and partial matches
+  #make sure this is NOT CASE SENSitive
   pg_search_scope :search_by_name, 
                   :against => :name,
                   :using => 
@@ -34,29 +33,5 @@ class Song < ActiveRecord::Base
                                 :any_word => true}
                   },
                   :ignoring => :accents
-
-  def validate_uniqueness_of_song_in_album
-    return true if !self.album_id #no associated album so ok to save
-
-    #query all songs on album for a duplicate name
-    #if search comes back blank, ok to save
-    query = self.album.songs.where(name: self.name )
-
-    return query.blank? ? true : false
-
-  end
-
-#   class User < ActiveRecord::Base
-#   has_many :parents # with keys and class_name pointing to the same class
-#   has_many :children # with keys and class_name pointing to the same class
-
-#   has_many :parents_children, through: :parents, source: :children
-
-#   def siblings
-#     self.parents_children.where("users.id != ?", self.id)
-#   end
-# end
-
-# d.siblings # what you want
 
 end

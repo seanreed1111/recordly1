@@ -2,9 +2,7 @@ class CollectionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_collection, only:[:show, :edit, :update, :destroy]
   before_action :set_album, only: [:show, :edit, :update]
-
-  #shows all albums in the user's collection
-  # access user from current_user method of Devise
+ 
 
   def index
     @albums = current_user.albums
@@ -34,13 +32,11 @@ class CollectionsController < ApplicationController
   end
 
   def edit
-    #@album = Album.find(@collection.album_id)
     @url = "\/collections\/#{@collection.id}"
     @method = :put
   end
 
   def update
-    #@album = Album.find(@collection.album_id)
     respond_to do |format|
       if (@album.update(album_params))
         format.html { redirect_to collections_path, notice: "Album was successfully added to your collection." }
@@ -54,7 +50,6 @@ class CollectionsController < ApplicationController
   end
 
   def show
-    #@album = Album.find(@collection.album_id)
   end
 
   def destroy
