@@ -1,5 +1,5 @@
 .container
-  =form_for [@collection, @album] do |f|
+  =form_for @collection, url: '/collections', method: :post do |f|
     =fields_for :album do |a|
       =a.label :name
       =a.text_field :name
