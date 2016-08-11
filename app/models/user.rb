@@ -15,9 +15,7 @@ class User < ActiveRecord::Base
 
   def favorite?(object)
     c = object.class.to_s
-    id = object.id
-
-    self.favorites.where(favoritable_id: id).where(favoritable_type:c).present?
+    self.favorites.where(favoritable_id: object.id).where(favoritable_type:c).present?
   end
 
   def album_ids
@@ -32,9 +30,6 @@ class User < ActiveRecord::Base
     self.artists.map {|artist| artist.id}
   end
 
-
-
-
   def search(search_string)
     pg_result = PgSearch.multisearch(search_string)
     albumids = pg_result.where(searchable_type: "Album").map {|item| item.searchable_id}
@@ -45,6 +40,17 @@ class User < ActiveRecord::Base
                     self.artists.where(id: artistids)+ 
                     self.songs.where(id: songids)).uniq
   end
+
+    PgSearch.multisearch_options = {
+    using: {
+      tsearch: {
+        prefix: true,
+        any_word: true,
+        dictionary: 'english'
+      }
+    },
+    ignoring: :accents
+    }
 end
 
 
@@ -54,13 +60,3 @@ end
 # 2) Only Artists contained in self.albums.artists, *and*
 # 3) Only Songs contained in self.albums.songs 
 
-# example scopes done with the other type of pg-search
-  # #make sure this is NOT CASE SENSITIVE
-  # pg_search_scope :search_by_name, 
-  #                 :against => :name,
-  #                 :using => 
-  #                 {
-  #                   :tsearch => {:prefix => true, 
-  #                               :any_word => true}
-  #                 },
-  #                 :ignoring => :accents
