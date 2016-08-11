@@ -1,7 +1,8 @@
 .container
-  =form_for @collection, url: '/collections', method: :post do |f|
+  =form_for @collection, url: @url, method: @method do |f|
     =fields_for :album do |a|
       =a.label :name
       =a.text_field :name
+      =a.hidden_field :album_id, value:@collection.album_id
     %br
     =f.submit 'Submit', class: 'btn btn-success'

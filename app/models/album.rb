@@ -1,6 +1,6 @@
 class Album < ActiveRecord::Base
 
-  before_create :validate_uniqueness_of_artist_album_combo
+  #before_create :validate_uniqueness_of_artist_album_combo
 
   include PgSearch #https://github.com/Casecommons/pg_search
   multisearchable :against => [:name]
@@ -15,7 +15,12 @@ class Album < ActiveRecord::Base
   has_many :favorites, as: :favoritable #polymorphic
   validates :name, presence: true
 
-  #this does not work!!!!
+  def my_collection
+    self.collections.where(album_id: self.id).first
+  end
+
+  #this does not work!!!! 
+  #Need to do this in the db directly
   def validate_uniqueness_of_artist_album_combo
     # in words. self is the album we want to save
     # if artist doesn't have any albums, return true

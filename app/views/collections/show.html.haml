@@ -1,8 +1,8 @@
-%p#notice 
-  =notice
-
 .album
-  = render album: @album
-%br
-= link_to 'Edit', "#"
+  = @album.name
+  = link_to 'Show', collection_path(@collection)
+  = link_to 'Edit', edit_collection_path(@collection)
+  = link_to 'Destroy', '#', :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+= link_to 'Add New Album', new_collection_path
 = link_to 'Back', collections_path

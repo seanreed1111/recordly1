@@ -11,9 +11,7 @@
     .container
       %h1 Welcome to Recordly!
     .container
-      -flash.each do |key, value|
-        =key
-        =value
+      =render 'layouts/messages'
       %br
 
     .container
