@@ -1,6 +1,7 @@
 class CollectionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_collection, only:[:show, :edit, :update, :destroy]
+  before_action :set_album, only: [:show, :edit, :update]
 
   #shows all albums in the user's collection
   # access user from current_user method of Devise
@@ -32,18 +33,14 @@ class CollectionsController < ApplicationController
     end
   end
 
-  #I have a collection.id, and I need to build
-  # the associated user and album object
   def edit
-    #@collection = current_user.collections.find(id: collection_params[:id])
-    #@album = Album.find(id: collection_params[:album_id])
-    @album = Album.find(@collection.album_id)
+    #@album = Album.find(@collection.album_id)
     @url = "\/collections\/#{@collection.id}"
     @method = :put
   end
 
   def update
-    @album = Album.find(@collection.album_id)
+    #@album = Album.find(@collection.album_id)
     respond_to do |format|
       if (@album.update(album_params))
         format.html { redirect_to collections_path, notice: "Album was successfully added to your collection." }
@@ -57,7 +54,7 @@ class CollectionsController < ApplicationController
   end
 
   def show
-    @album = Album.find(@collection.album_id)
+    #@album = Album.find(@collection.album_id)
   end
 
   def destroy
@@ -72,6 +69,10 @@ class CollectionsController < ApplicationController
 
   def set_collection
     @collection = Collection.find(params[:id])
+  end
+
+  def set_album
+    @album = Album.find(@collection.album_id)
   end
 
 
