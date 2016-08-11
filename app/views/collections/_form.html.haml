@@ -1,6 +1,6 @@
 .container
-  =form_for @collection_form, html:{role: 'form'} do |f|
-    =f.fields_for :albums do |a|
+  =form_for [@collection, @album] do |f|
+    =fields_for :album do |a|
       =a.label :name
       =a.text_field :name
     %br
