@@ -1,0 +1,10 @@
+.album
+  = album.name
+  .inline-links
+    = link_to 'Remove From Favorites', '#'
+    = link_to 'Show', '#'
+    = link_to 'Edit', '#'
+    = link_to 'Destroy', '#', :method => :delete, :data => { :confirm => 'Are you sure?' }
+%br
+= link_to 'Home', root_path
+= link_to 'Back', favorites_path

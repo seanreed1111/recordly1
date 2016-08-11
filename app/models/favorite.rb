@@ -7,13 +7,13 @@ class Favorite < ActiveRecord::Base
     message: 'can only favorite an item once'
   } 
 
-  #Define scope to allow commands like the following
-  # @user.favorites.artists
-  # @user.favorites.songs
-  # @user.favorites.albums
+  #convenience methods
+    # @user.favorites.artists
+    # @user.favorites.songs
+    # @user.favorites.albums
   scope :albums, -> {where(favoritable_type: 'Album')}
   scope :artists,  -> {where(favoritable_type: 'Artist')}
   scope :songs, -> {where(favoritable_type: 'Song')}
 
-  
+
 end

@@ -2,5 +2,10 @@
 
 =render 'form'
 
-= link_to 'Show', '#'
-= link_to 'Back', collections_path
+.inline-links
+  -if(current_user.favorite?(@album))
+    = link_to 'Remove From Favorites', '#'
+  -else
+    = link_to 'Add to Favorites', '#'
+  = link_to 'Show', '#'
+  = link_to 'Back', collections_path
