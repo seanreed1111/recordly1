@@ -21,10 +21,6 @@ class Album < ActiveRecord::Base
     self.collections.where(album_id: self.id).first
   end
 
-  def favorite?
-    true
-  end
-
   PgSearch.multisearch_options = {
     using: {
       tsearch: {

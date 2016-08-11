@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # resources :albums
   # resources :songs
   resources :collections
-  resources :favorites, only: [:index,:new, :create, :destroy]
+  resources :favorites, only: [:index, :new, :create, :destroy]
 
   root "collections#index"
  end

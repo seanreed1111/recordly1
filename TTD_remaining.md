@@ -16,6 +16,8 @@ User can click on an album to see
     Artist on the Album, with link to the Artists other work
     Songs on the Album, with no further links except BACK
 
+Spend some time thinking about the proper settings 
+for when dependent: :destroy or some other option might be needed
 
 General User views
 Views:

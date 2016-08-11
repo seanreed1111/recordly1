@@ -1,8 +1,6 @@
 class FavoritesController < ApplicationController
   before_action :authenticate_user!
 
-  #@favs can be any of Song, Artist, or Album
-
   def index
     @albums = current_user.favorites.albums
     @artists = current_user.favorites.artists
@@ -10,6 +8,7 @@ class FavoritesController < ApplicationController
   end
 
   def new
+
   end
 
   def create
@@ -17,6 +16,12 @@ class FavoritesController < ApplicationController
 
   def destroy
   end
+end
+
+private
+
+def favorites_params
+  params.require(:favorites).permit(:favoritable_id, :favoritable_type)
 end
 
 # convenience methods

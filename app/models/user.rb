@@ -14,8 +14,8 @@ class User < ActiveRecord::Base
   has_many :favorites, inverse_of: :user  #polymorphic favorites
 
   def favorite?(object)
-    c = object.class.to_s
-    self.favorites.where(favoritable_id: object.id).where(favoritable_type:c).present?
+    object_class_name = object.class.to_s
+    self.favorites.where(favoritable_id: object.id).where(favoritable_type: object_class_name).present?
   end
 
   def album_ids
