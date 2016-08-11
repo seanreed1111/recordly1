@@ -21,15 +21,19 @@ class Album < ActiveRecord::Base
     self.collections.where(album_id: self.id).first
   end
 
+  def favorite?
+    true
+  end
 
-  pg_search_scope :search_by_name, 
-                  :against => :name,
-                  :using => 
-                  {
-                    :tsearch => {:prefix => true, 
-                                :any_word => true}
-                  },
-                  :ignoring => :accents
-
+  PgSearch.multisearch_options = {
+    using: {
+      tsearch: {
+        prefix: true,
+        any_word: true,
+        dictionary: 'english'
+      }
+    },
+    ignoring: :accents
+  }
 
 end

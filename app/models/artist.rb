@@ -8,12 +8,14 @@ class Artist < ActiveRecord::Base
   has_many :favorites, as: :favoritable #polymorphic
   validates :name, presence: true
 
-  pg_search_scope :search_by_name, 
-                  :against => :name,
-                  :using => 
-                  {
-                    :tsearch => {:prefix => true, 
-                                :any_word => true}
-                  },
-                  :ignoring => :accents
+  PgSearch.multisearch_options = {
+    using: {
+      tsearch: {
+        prefix: true,
+        any_word: true,
+        dictionary: 'english'
+      }
+    },
+    ignoring: :accents
+  }
 end

@@ -14,4 +14,6 @@ class Favorite < ActiveRecord::Base
   scope :albums, -> {where(favoritable_type: 'Album')}
   scope :artists,  -> {where(favoritable_type: 'Artist')}
   scope :songs, -> {where(favoritable_type: 'Song')}
+
+  
 end

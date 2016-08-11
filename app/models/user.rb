@@ -13,6 +13,13 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :albums
   has_many :favorites, inverse_of: :user  #polymorphic favorites
 
+  def favorite?(object)
+    c = object.class.to_s
+    id = object.id
+
+    self.favorites.where(favoritable_id: id).where(favoritable_type:c).present?
+  end
+
   def album_ids
     self.collections.map {|collection| collection.album_id}
   end
@@ -26,11 +33,7 @@ class User < ActiveRecord::Base
   end
 
 
-# TTD 8.2.11.2 Limit Constrained Lookup, p251, The Rails 4 Way
-# search results should return..
-# 1) Only Albums contained in self.albums, *and*
-# 2) Only Artists contained in self.albums.artists, *and*
-# 3) Only Songs contained in self.albums.songs 
+
 
   def search(search_string)
     pg_result = PgSearch.multisearch(search_string)
@@ -41,15 +44,15 @@ class User < ActiveRecord::Base
     search_result = (self.albums.where(id: albumids) + 
                     self.artists.where(id: artistids)+ 
                     self.songs.where(id: songids)).uniq
-
   end
 end
 
 
-  #  album_result = result.where(we select the album objects
-  #                             and check the id of the album objects
-  #                         and return the results only if
-  #                          the id is in : self.album_ids)
+# TTD 8.2.11.2 Limit Constrained Lookup, p251, The Rails 4 Way
+# search results should return..
+# 1) Only Albums contained in self.albums, *and*
+# 2) Only Artists contained in self.albums.artists, *and*
+# 3) Only Songs contained in self.albums.songs 
 
 # example scopes done with the other type of pg-search
   # #make sure this is NOT CASE SENSITIVE

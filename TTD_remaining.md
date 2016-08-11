@@ -1,4 +1,11 @@
-User can SEARCH *through* *their* *collection* for any prefix or word
+User should be able to "favorite" any 
+  album, song, or artist from any album in their collection 
+
+When complete, user should be able to view 
+a list of their "favorite" albums, artists, and songs, etc.
+
+
+!User can SEARCH *through* *their* *collection* for any prefix or word
 
 user can add a new album and input its data
     New Album must contain: 
@@ -9,11 +16,6 @@ User can click on an album to see
     Artist on the Album, with link to the Artists other work
     Songs on the Album, with no further links except BACK
 
-User should be able to "favorite" any 
-  album, song, or artist from any album in their collection 
-
-When complete, user should be able to view 
-a list of their "favorite" albums, artists, and songs, etc.
 
 General User views
 Views:
