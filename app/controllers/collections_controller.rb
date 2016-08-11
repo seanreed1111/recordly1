@@ -1,6 +1,6 @@
 class CollectionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_collection, only:[:show, :edit, :update]
+  before_action :set_collection, only:[:show, :edit, :update, :destroy]
 
   #shows all albums in the user's collection
   # access user from current_user method of Devise
@@ -61,6 +61,11 @@ class CollectionsController < ApplicationController
   end
 
   def destroy
+    @collection.destroy
+    respond_to do |format|
+      format.html { redirect_to collections_url, notice: 'Album was successfully removed.' }
+      format.json { head :no_content }
+    end
   end
 
   private

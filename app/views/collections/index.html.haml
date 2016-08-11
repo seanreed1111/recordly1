@@ -5,6 +5,6 @@
       = album.name
       = link_to 'Show', collection_path(album.my_collection.id)
       = link_to 'Edit', edit_collection_path(album.my_collection.id)
-      = link_to 'Destroy', '#', :method => :delete, :data => { :confirm => 'Are you sure?' }
+      = link_to 'Destroy', album.my_collection, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 = link_to 'Add New Album', new_collection_path
