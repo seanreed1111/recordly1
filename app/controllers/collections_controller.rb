@@ -1,6 +1,6 @@
 class CollectionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_collection, only:[:show]
+  before_action :set_collection, only:[:show, :edit, :update]
 
   #shows all albums in the user's collection
   # access user from current_user method of Devise
@@ -9,9 +9,6 @@ class CollectionsController < ApplicationController
     @albums = current_user.albums
   end
 
-  #I want to make a new collection item,
-  # associated with the current user,
-  #that lets the user make a new album
   def new
     @album = current_user.albums.new
     @collection = current_user.collections.new
@@ -38,24 +35,25 @@ class CollectionsController < ApplicationController
   #I have a collection.id, and I need to build
   # the associated user and album object
   def edit
-    @collection = current_user.collections.find(id: collection_params[:id])
-    @album = Album.find(id: collection_params[:album_id])
-    @url = edit_collection_path @collection
+    #@collection = current_user.collections.find(id: collection_params[:id])
+    #@album = Album.find(id: collection_params[:album_id])
+    @album = Album.find(@collection.album_id)
+    @url = "\/collections\/#{@collection.id}"
     @method = :put
   end
 
   def update
-    @album = Album.find(id: album_id)
-    if @album.update(collection_params[:album_attributes])
-             format.html { redirect_to collections_path, 
-          notice: "Album was successfully added to your collection." }
-    #   format.json { render :show, status: :created, location: @user }
-    else
-        format.html { render :update, 
-          notice: 'Errors prevented this form from being saved.' }
-    #   format.json { render json: @collection_form.errors, status: :unprocessable_entity }
+    @album = Album.find(@collection.album_id)
+    respond_to do |format|
+      if (@album.update(album_params))
+        format.html { redirect_to collections_path, notice: "Album was successfully added to your collection." }
+      #   format.json { render :show, status: :created, location: @user }
+      else
+          format.html { render :update, 
+            notice: 'Errors prevented this form from being saved.' }
+      #   format.json { render json: @collection_form.errors, status: :unprocessable_entity }
+      end
     end
-
   end
 
   def show
@@ -72,9 +70,9 @@ class CollectionsController < ApplicationController
   end
 
 
-   # def album_params
-   #   params.require(:album).permit(:name, :id)
-   # end
+  def album_params
+     params.require(:album).permit(:name, :id)
+  end
 
   def collection_params
     params.require(:collection).permit(:id, :user_id, :album_id, album_attributes: [:name])
