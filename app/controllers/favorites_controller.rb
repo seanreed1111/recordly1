@@ -3,7 +3,9 @@ class FavoritesController < ApplicationController
   before_action :load_favoritable, except: [:index]
 
   def index
-    @albums = current_user.favorited_albums.to_a
+    @albums = current_user.favorited_albums
+    @artists = current_user.favorited_artists
+    @songs = current_user.favorited_songs    
   end
 
   def new
