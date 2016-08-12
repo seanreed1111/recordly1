@@ -3,9 +3,7 @@ class FavoritesController < ApplicationController
   before_action :load_favoritable, except: [:index]
 
   def index
-    @albums = current_user.favorites.albums
-    @artists = current_user.favorites.artists
-    @songs = current_user.favorites.songs
+    @albums = current_user.favorited_albums.to_a
   end
 
   def new
@@ -18,7 +16,7 @@ class FavoritesController < ApplicationController
     @album = Album.find(params[:album_id])
     @favorite = @favoritable.favorites.new(user_id: current_user.id)
     if @favorite.save
-      redirect_to favorites_path, notice: 'Favorite has been created'
+      redirect_to favorites_path, message: 'Favorite has been created'
     else
       #redirect_to favorites_path, notice: 'Errors prevented creation of favorite.'
     end
@@ -41,11 +39,3 @@ class FavoritesController < ApplicationController
   end
 end
 
-
-
-# this is what the favorites table looks like
-# create_table "favorites", force: :cascade do |t|
-#     t.integer  "user_id"
-#     t.integer  "favoritable_id"
-#     t.string   "favoritable_type"
-#   end

@@ -5,13 +5,20 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :collections
-
   has_many :albums, through: :collections
-  has_many :artists, through: :albums
-  has_many :songs, through: :albums
-  
   accepts_nested_attributes_for :albums
+
   has_many :favorites, inverse_of: :user  #polymorphic favorites
+
+  has_many :favorited_albums, through: :favorites,
+            source: :favoritable, source_type: 'Album'
+
+  has_many :favorited_artists, through: :favorites,
+            source: :favoritable, source_type: 'Artist'
+
+  has_many :favorited_songs, through: :favorites,
+          source: :favoritable, source_type: 'Song'
+
 
   def favorite?(object)
     object_class_name = object.class.to_s
@@ -32,6 +39,7 @@ class User < ActiveRecord::Base
 
   def search(search_string)
     pg_result = PgSearch.multisearch(search_string)
+
     albumids = pg_result.where(searchable_type: "Album").map {|item| item.searchable_id}
     songids = pg_result.where(searchable_type: "Song").map {|item| item.searchable_id}
     artistids = pg_result.where(searchable_type: "Artist").map {|item| item.searchable_id}

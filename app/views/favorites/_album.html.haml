@@ -1,7 +1,9 @@
+%h2 Albums
 .album
+  %h4 Album Name
   = album.name
   .inline-links
-    = link_to 'Remove From Favorites',favorite_path, id: album.id, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    = link_to 'Remove From Favorites','#', id: album.id, :method => :delete, :data => { :confirm => 'Are you sure?' }
     = link_to 'Show', '#'
     = link_to 'Edit', '#'
     = link_to 'Destroy', '#', id: album.id, :method => :delete, :data => { :confirm => 'Are you sure?' }

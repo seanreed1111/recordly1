@@ -1,7 +1,7 @@
 .artist
   = artist.name
   .inline-links
-    = link_to 'Remove From Favorites', favorite_path, id: artist.id :method => :delete, :data => { :confirm => 'Are you sure?' }
+    = link_to 'Remove From Favorites', '#', id: artist.id :method => :delete, :data => { :confirm => 'Are you sure?' }
     = link_to 'Show', '#'
     = link_to 'Edit', '#'
     = link_to 'Destroy', '#', id: artist.id :method => :delete, :data => { :confirm => 'Are you sure?' }

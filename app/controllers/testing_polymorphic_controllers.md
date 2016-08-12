@@ -60,22 +60,10 @@ controllers/posts/comments_controller.rb
       @commentable = Post.find(params[:post_id])
     end
 ruby-on-rails rspec controller polymorphic-associations
-shareimprove this question
-edited May 16 at 15:04
-asked May 16 at 13:00
 
-Szilard Magyar
-1,023410
-add a comment
-1 Answer
-active oldest votes
-up vote
-1
-down vote
-accepted
 Using the module: :posts will route to Posts::CommentsController#create.
 
-If that is not what you intended than remove the module option. If it is not what you want then remove the module option.
+If that is not what you intended than remove the module option. 
 
 Otherwise you need to ensure that you have the correct class name for both your controller and spec.
 
