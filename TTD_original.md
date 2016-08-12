@@ -4,7 +4,7 @@ Recordly will be an application that allows for users to input and store their r
 !User can sign in
 !User can see their album collection after signing in
 
-User can SEARCH through their collection for any prefix or word
+!User can SEARCH through their collection for any prefix or word
 
 user can add a new album and input its data, including 
     !album name

@@ -2,12 +2,14 @@
   %h2= @album.name
   .inline-links
     -if(current_user.favorite?(@album))
-      = link_to 'Remove From Favorites', '#'
+      = link_to 'Remove From Favorites', album_favorite_path(@album), method: :delete
     -else
       = link_to 'Add to Favorites', album_favorites_path(@album), method: :post
-    = link_to 'Show', 'collection_path(@collection)'
-    = link_to 'Edit', edit_collection_path(@collection)
-    = link_to 'Destroy', '#', :method => :delete, :data => { :confirm => 'Are you sure?' }
 
+    = link_to 'Show', collection_path(@collection)
+    = link_to 'Edit', edit_collection_path(@collection)
+    = link_to 'Destroy', '#', method: :delete, data: { :confirm => 'Are you sure?' }
+
+%br
 = link_to 'Add New Album', new_collection_path
-= link_to 'Back', collections_path
+= link_to 'Back', :back

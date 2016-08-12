@@ -14,17 +14,24 @@ class FavoritesController < ApplicationController
     # redirect_to controller: :favorites, action: create, id:@album.id, favoritable_type: @favorite.favoritable_type
   end
 
-  def create
-    @album = Album.find(params[:album_id])
+########## THIS ONLY WORKS FOR ALBUMS!!!!!
+  def create    
+    #@album = Album.find(params[:album_id])
     @favorite = @favoritable.favorites.new(user_id: current_user.id)
     if @favorite.save
-      redirect_to favorites_path, message: 'Favorite has been created'
+      redirect_to :back, message: 'Favorite has been created'
     else
-      #redirect_to favorites_path, notice: 'Errors prevented creation of favorite.'
+      #redirect_to :back, notice: 'Errors prevented creation of favorite.'
     end
   end
 
   def destroy
+    @favorite = @favoritable.favorites.find(user_id: current_user.id)
+    if @favorite.destroy
+      redirect_to :back, message:'Favorite has been removed'
+    else
+      #redirect_to :back, notice: 'Errors prevented creation of favorite.'
+    end
   end
 
   private

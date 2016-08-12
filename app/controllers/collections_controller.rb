@@ -50,6 +50,12 @@ class CollectionsController < ApplicationController
   end
 
   def show
+    #need to pick the correct template to render
+    # will be one of 
+      #collection/show_album
+      #collection/show_song
+      #collection/show_artist
+
   end
 
   def destroy
