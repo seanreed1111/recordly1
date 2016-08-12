@@ -81,11 +81,14 @@ class CreateComments < ActiveRecord::Migration[5.0]
 end
 Run the migration. Add the polymorphic association to the comment model.
 
-belongs_to :commentable, polymorphic: true    
+belongs_to :commentable, polymorphic: true 
+
 Add
 
 has_many :comments, as: :commentable
-to article, event and photo models. Let's experiment in the rails console. We can create a comment for an article.
+to article, event and photo models. 
+
+Let's experiment in the rails console. We can create a comment for an article.
 
 > a = Article.first
   Article Load (0.2ms)  SELECT  "articles".* FROM "articles" ORDER BY "articles"."id" ASC LIMIT ?  [["LIMIT", 1]]
