@@ -15,7 +15,6 @@ class Artist < ActiveRecord::Base
         any_word: true,
         dictionary: 'english'
       }
-    },
-    ignoring: :accents
+    }
   }
 end

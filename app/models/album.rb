@@ -5,8 +5,10 @@ class Album < ActiveRecord::Base
 
   validates :name, presence: true
   has_many :favorites, as: :favoritable #polymorphic
+
   has_many :collections
   has_many :users, through: :collections
+  
   has_many :songs
   accepts_nested_attributes_for :songs 
 
@@ -31,8 +33,7 @@ class Album < ActiveRecord::Base
         any_word: true,
         dictionary: 'english'
       }
-    },
-    ignoring: :accents
+    }
   }
 
 end

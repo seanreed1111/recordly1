@@ -1,8 +1,7 @@
 class Song < ActiveRecord::Base
 
-
-  belongs_to :artist
   belongs_to :album
+  has_one :artist, through: :album
   has_many :favorites, as: :favoritable
 
   validates :name, presence: true
@@ -18,7 +17,6 @@ class Song < ActiveRecord::Base
         any_word: true,
         dictionary: 'english'
       }
-    },
-    ignoring: :accents
+    }
   }
 end

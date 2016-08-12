@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   has_many :collections
   has_many :albums, through: :collections
   accepts_nested_attributes_for :albums
+  has_many :artists, through: :albums
+  has_many :songs, through: :albums
 
   has_many :favorites, inverse_of: :user  #polymorphic favorites
 
@@ -39,32 +41,24 @@ class User < ActiveRecord::Base
 
   def search(search_string)
     pg_result = PgSearch.multisearch(search_string)
+    if pg_result.present?
+      albumids = pg_result.where(searchable_type: "Album").map {|item| item.searchable_id}
+      songids = pg_result.where(searchable_type: "Song").map {|item| item.searchable_id}
+      artistids = pg_result.where(searchable_type: "Artist").map {|item| item.searchable_id}
 
-    albumids = pg_result.where(searchable_type: "Album").map {|item| item.searchable_id}
-    songids = pg_result.where(searchable_type: "Song").map {|item| item.searchable_id}
-    artistids = pg_result.where(searchable_type: "Artist").map {|item| item.searchable_id}
-
-    search_result = (self.albums.where(id: albumids) + 
-                    self.artists.where(id: artistids)+ 
-                    self.songs.where(id: songids)).uniq
+      search_result = (self.albums.where(id: albumids) + 
+                      self.artists.where(id: artistids)+ 
+                      self.songs.where(id: songids)).uniq
+    end
   end
 
-    PgSearch.multisearch_options = {
+  PgSearch.multisearch_options = {
     using: {
       tsearch: {
         prefix: true,
         any_word: true,
         dictionary: 'english'
       }
-    },
-    ignoring: :accents
     }
+  }
 end
-
-
-# TTD 8.2.11.2 Limit Constrained Lookup, p251, The Rails 4 Way
-# search results should return..
-# 1) Only Albums contained in self.albums, *and*
-# 2) Only Artists contained in self.albums.artists, *and*
-# 3) Only Songs contained in self.albums.songs 
-

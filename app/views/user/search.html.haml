@@ -1,0 +1,11 @@
+set up so it shows up in a sidebar 
+via a 'yield :search' on the app layout page
+%h1 Search Results
+- if(@results)
+  =@results.each do |result|
+    =link_to 'View Item', collection_path(User.find(current_user.id), result)
+-else
+  No Results
+
+%br
+=link_to "Home", root_path
