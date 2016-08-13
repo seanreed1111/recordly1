@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
     self.favorite(object).present?
   end
 
+
   def favorite(object)
     object_class_name = object.class.to_s
     self.favorites.where(favoritable_id: object.id).where(favoritable_type: object_class_name).first

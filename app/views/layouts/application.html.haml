@@ -11,6 +11,7 @@
       %h1 Welcome to Recordly!
     .container
       =render 'layouts/messages'
+
       %br
     .container
       / yield :search to search partial??
@@ -19,29 +20,29 @@
         =submit_tag "Search!"
 
     %br
-    .container
-      %br
-      Params
-      =params
-      %br
-      Collection
-      -if @collection
-        User.id
-        =@collection.user_id
-        Album.id
-        =@collection.album_id
-      %br
-      Album
-      -if @album
-        Album.id
-        =@album.id
-        Album.name
-        =@album.name
-      %br
-      Favorite
-      -if @favorite
-        =@favorite.favoritable_type
-        =@favorite.favoritable_id
+    / .container
+    /   %br
+    /   Params
+    /   =params
+    /   %br
+    /   Collection
+    /   -if @collection
+    /     User.id
+    /     =@collection.user_id
+    /     Album.id
+    /     =@collection.album_id
+    /   %br
+    /   Album
+    /   -if @album
+    /     Album.id
+    /     =@album.id
+    /     Album.name
+    /     =@album.name
+    /   %br
+    /   Favorite
+    /   -if @favorite
+    /     =@favorite.favoritable_type
+    /     =@favorite.favoritable_id
 
     %br
     .container
@@ -56,3 +57,6 @@
 
     .container
       = yield
+    %br
+    .container.debug
+      =debug(assigns)

@@ -17,7 +17,7 @@ class FavoritesController < ApplicationController
   def create
     @favorite = @favoritable.favorites.new(user_id: current_user.id)
     if @favorite.save
-      redirect_to :back, message: 'Favorite has been created'
+      redirect_to :back, notice: 'Favorite has been created'
     else
       #redirect_to :back, notice: 'Errors prevented creation of favorite.'
     end
@@ -26,7 +26,7 @@ class FavoritesController < ApplicationController
   def destroy
     @favorite = @favoritable.favorites.find(user_id: current_user.id)
     if @favorite.destroy
-      redirect_to :back, message:'Favorite has been removed'
+      redirect_to :back, alert:'Favorite has been removed'
     else
       #redirect_to :back, notice: 'Errors prevented creation of favorite.'
     end
