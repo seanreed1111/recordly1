@@ -1,5 +1,5 @@
 %h1 New song
 
-= render 'form'
+= render 'form', song: song #need to pass album data
 
-= link_to 'Back', songs_path
+= link_to 'Back', :back 

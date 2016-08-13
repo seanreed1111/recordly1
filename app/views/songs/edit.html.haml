@@ -1,7 +1,7 @@
 %h1 Editing song
 
-= render 'form'
+= render 'form', song: song
 
-= link_to 'Show', @song
+= link_to 'Show', '#'
 \|
-= link_to 'Back', songs_path
+= link_to 'Back', :back

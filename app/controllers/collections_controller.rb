@@ -43,7 +43,7 @@ class CollectionsController < ApplicationController
       #   format.json { render :show, status: :created, location: @user }
       else
           format.html { render :update, 
-            notice: 'Errors prevented this form from being saved.' }
+            alert: 'Errors prevented this form from being saved.' }
       #   format.json { render json: @collection_form.errors, status: :unprocessable_entity }
       end
     end

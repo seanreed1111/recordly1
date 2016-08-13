@@ -28,7 +28,7 @@ class FavoritesController < ApplicationController
     if @favorite.destroy
       redirect_to :back, alert:'Favorite has been removed'
     else
-      #redirect_to :back, notice: 'Errors prevented creation of favorite.'
+      redirect_to :back, notice: 'Errors prevented creation of favorite.'
     end
   end
 

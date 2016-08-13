@@ -1,0 +1,15 @@
+%h1 Search Results
+
+.albums
+  -if @albums.present?
+    %h2 Albums
+    =render @albums 
+.artists
+  -if @artists.present?
+    %h2 Artists
+    =render @artists
+.songs
+  -if @songs.present?
+    %h2 Songs
+    =render @songs
+%h1 End of Search Results

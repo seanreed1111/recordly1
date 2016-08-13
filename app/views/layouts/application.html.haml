@@ -8,7 +8,7 @@
 
   %body
     .container
-      %h1 Welcome to Recordly!
+      =link_to content_tag(:h1, "Welcome to Recordly!"), root_path
     .container
       =render 'layouts/messages'
 
@@ -59,4 +59,5 @@
       = yield
     %br
     .container.debug
+      debugging console
       =debug(assigns)

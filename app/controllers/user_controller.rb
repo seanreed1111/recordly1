@@ -2,8 +2,13 @@ class UserController < ApplicationController
   before_action :authenticate_user!
 
   def search
-    safe_text = params[:search]
-    @results = current_user.search(safe_text) #uses PgSearch
+    safe_text = params[:search] #unneeded. PgSearch already makes sure text is safe
+    #@results = current_user.search(safe_text) #uses PgSearch
+    destructured = current_user.search_destructured(safe_text)
+    @albums = destructured[0]
+    @artists = destructured[1]
+    @songs = destructured[2]
+    render 'search_destructured'
   end
 
   private

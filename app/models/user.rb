@@ -57,6 +57,23 @@ class User < ActiveRecord::Base
     end
   end
 
+
+  def search_destructured(search_string)
+    search_result = []
+
+    pg_result = PgSearch.multisearch(search_string)
+    if pg_result.present?
+      albumids = pg_result.where(searchable_type: "Album").map {|item| item.searchable_id}
+      songids = pg_result.where(searchable_type: "Song").map {|item| item.searchable_id}
+      artistids = pg_result.where(searchable_type: "Artist").map {|item| item.searchable_id}
+
+      search_result << self.albums.where(id: albumids).uniq 
+      search_result << self.artists.where(id: artistids).uniq 
+      search_result << self.songs.where(id: songids).uniq
+    end
+    search_result
+  end
+
   PgSearch.multisearch_options = {
     using: {
       tsearch: {

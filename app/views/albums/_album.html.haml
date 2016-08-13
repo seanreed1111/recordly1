@@ -1,6 +1,7 @@
-.song
-  = song.name
-
+.album
+  = album.name
+  / artist, songs
+  = link_to 'Show', '#'
   = link_to 'Edit', '#'
   = link_to 'Destroy', '#', :method => :delete, :data => { :confirm => 'Are you sure?' }
-  = link_to 'Home', root_path
+  =link_to 'Home', root_path
