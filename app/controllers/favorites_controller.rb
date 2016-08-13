@@ -14,9 +14,7 @@ class FavoritesController < ApplicationController
     # redirect_to controller: :favorites, action: create, id:@album.id, favoritable_type: @favorite.favoritable_type
   end
 
-########## THIS ONLY WORKS FOR ALBUMS!!!!!
-  def create    
-    #@album = Album.find(params[:album_id])
+  def create
     @favorite = @favoritable.favorites.new(user_id: current_user.id)
     if @favorite.save
       redirect_to :back, message: 'Favorite has been created'

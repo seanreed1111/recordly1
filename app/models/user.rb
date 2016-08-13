@@ -23,8 +23,12 @@ class User < ActiveRecord::Base
 
 
   def favorite?(object)
+    self.favorite(object).present?
+  end
+
+  def favorite(object)
     object_class_name = object.class.to_s
-    self.favorites.where(favoritable_id: object.id).where(favoritable_type: object_class_name).present?
+    self.favorites.where(favoritable_id: object.id).where(favoritable_type: object_class_name).first
   end
 
   def album_ids
