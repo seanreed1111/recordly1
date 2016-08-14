@@ -1,7 +1,7 @@
 class CollectionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_collection, only:[:show, :edit, :update, :destroy]
-  before_action :set_album, only: [:show, :edit, :update]
+  before_action :set_album, only: [:show, :edit, :update, :destroy]
 
 
   def index
@@ -61,7 +61,7 @@ class CollectionsController < ApplicationController
     @collection.destroy
     respond_to do |format|
       format.html { redirect_to collections_url, notice: 'Album was successfully removed.' }
-      format.json { head :no_content }
+      format.js
     end
   end
 
