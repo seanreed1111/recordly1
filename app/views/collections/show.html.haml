@@ -1,14 +1,17 @@
 .album
   %h2= @album.name
+  -if @album.artist
+    %h4 
+      Artist: #{@album.artist.name}
   .inline-links
     -if(current_user.favorite?(@album))
       = link_to 'Remove From Favorites', album_favorite_path(@album, current_user.favorite(@album)), method: :delete
     -else
-      = link_to 'Add to Favorites', album_favorites_path(@album), method: :post
+      = link_to 'Add Album to Favorites', album_favorites_path(@album), method: :post
     %br
-    = link_to 'Edit', edit_collection_path(@collection)
+    = link_to 'Edit Album', edit_collection_path(@collection)
     = link_to 'Destroy', @collection, method: :delete, data: { :confirm => 'Are you sure?' }
 
 %br
 = link_to 'Add New Album', new_collection_path
-= link_to 'Back', :back
+= link_to 'Home', root_path

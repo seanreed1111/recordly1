@@ -18,31 +18,6 @@
 
     %br
     .container
-      %br
-      Params
-      =params
-    /   %br
-    /   Collection
-    /   -if @collection
-    /     User.id
-    /     =@collection.user_id
-    /     Album.id
-    /     =@collection.album_id
-    /   %br
-    /   Album
-    /   -if @album
-    /     Album.id
-    /     =@album.id
-    /     Album.name
-    /     =@album.name
-    /   %br
-    /   Favorite
-    /   -if @favorite
-    /     =@favorite.favoritable_type
-    /     =@favorite.favoritable_id
-
-    %br
-    .container
       -unless user_signed_in?
         =link_to "Sign up now", new_user_registration_path
         =link_to "Sign in", new_user_session_path
@@ -54,6 +29,10 @@
 
     .container
       = yield
+    %br
+    .container
+      Params
+      =params
     %br
     .container.debug
       debugging console

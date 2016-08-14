@@ -16,20 +16,12 @@ class CollectionsController < ApplicationController
   end
 
   def create
-    puts "params = #{params}"
-    puts "album_params = #{album_params}"
-    puts "artist_params = #{artist_params}"
-
-    puts "album_params[:name] = #{album_params[:name]}"
-    puts "artist_params[:name] = #{artist_params[:name]}"
 
     @album = current_user.albums.new(album_params)
-   
-
-
+    current_user.add_artist_to_album!(@album, artist_params[:name])
     respond_to do |format|
       if (@album.save)
-        current_user.add_artist_to_album!(@album, artist_params[:name])
+
         @collection = current_user.collections.create(album_id: @album.id)
         format.html { redirect_to collections_path, 
           notice: "Album was successfully added to your collection." }
@@ -48,14 +40,15 @@ class CollectionsController < ApplicationController
   end
 
   def update
+    current_user.add_artist_to_album!(@album, artist_params[:name])
     respond_to do |format|
       if (@album.update(album_params))
-        format.html { redirect_to collections_path, notice: "Album was successfully added to your collection." }
-      #   format.json { render :show, status: :created, location: @user }
+        format.html { redirect_to @collection, notice: "Album was successfully added to your collection." }
+         format.json { render :show, status: :created, location: @user }
       else
-          format.html { render :update, 
+          format.html { render @collection, 
             alert: 'Errors prevented this form from being saved.' }
-      #   format.json { render json: @collection_form.errors, status: :unprocessable_entity }
+         format.json { render json: @collection.errors, status: :unprocessable_entity }
       end
     end
   end

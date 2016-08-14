@@ -6,5 +6,10 @@
     =fields_for :artist do |aa|
       =aa.label :artist_name
       =aa.text_field :name, id: "Artist Name"
+
+
+    // ADD SONGS HERE. 
+    // USER SHOULD BE ABLE TO ADD SONGS FROM 
+    // NEW or EDIT, which both lead to this form..
     %br
     =f.submit 'Submit', class: 'btn btn-success'
