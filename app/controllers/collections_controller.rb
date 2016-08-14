@@ -16,14 +16,20 @@ class CollectionsController < ApplicationController
   end
 
   def create
-    @album = current_user.albums.new(album_params)
-
     puts "params = #{params}"
     puts "album_params = #{album_params}"
     puts "artist_params = #{artist_params}"
 
+    puts "album_params[:name] = #{album_params[:name]}"
+    puts "artist_params[:name] = #{artist_params[:name]}"
+
+    @album = current_user.albums.new(album_params)
+   
+
+
     respond_to do |format|
       if (@album.save)
+        current_user.add_artist_to_album!(@album, artist_params[:name])
         @collection = current_user.collections.create(album_id: @album.id)
         format.html { redirect_to collections_path, 
           notice: "Album was successfully added to your collection." }

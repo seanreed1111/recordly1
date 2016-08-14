@@ -24,20 +24,20 @@ class User < ActiveRecord::Base
 
  #(Album, String) -> ()
   def add_artist_to_album!(album_object, artist_name)
-    if album_object.artist.name != artist_name
+    if ((!album_object.artist) || album_object.artist.name != artist_name)
       if(artist_object_blank?(artist_name))
         artist = create_artist_object_with_name!(artist_name)
       else
         artist = find_artist_object_by_name(artist_name)
       end
 
-      album_object.artist.id = artist.id
+      album_object.artist_id = artist.id
     end
   end
 
 #(Album, Artist) -> ()
   def add_artist_object_to_album_object!(album_object, artist_object)
-    album_object.artist.id = artist_object.id
+    album_object.artist_id = artist.id
   end
 
 
@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
 
   # String -> Artist
   def create_artist_object_with_name!(artist_name)
-    current_user.artists.create(name: artist_name)
+    Artist.create(name: artist_name)
   end
 
 # Object -> Bool
