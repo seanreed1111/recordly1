@@ -2,8 +2,8 @@
 %html
   %head
     %title Recordly1
-    =stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    =javascript_include_tag 'application', 'data-turbolinks-track' => true
+    =stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false
+    =javascript_include_tag 'application', 'data-turbolinks-track' => false
     =csrf_meta_tags
 
   %body
@@ -11,10 +11,7 @@
       =link_to content_tag(:h1, "Welcome to Recordly!"), root_path
     .container
       =render 'layouts/messages'
-    .container
-      =form_tag(user_search_path, method: :post, id:"search_form") do
-        =text_field_tag :search, params[:search], placeholder: "Search Your Collection"
-        =submit_tag "Search!"
+
 
     %br
     .container
@@ -26,6 +23,12 @@
         Signed in as
         = current_user.email
         =link_to "Sign out", destroy_user_session_path, method: :delete
+        %br
+        .container{id: "search_container"}
+          =form_tag(user_search_path, method: :post, id:"search_form") do
+            =text_field_tag :search, params[:search], placeholder: "Search Your Collection"
+            =submit_tag "Search!"
+        %br
 
     .container{id: "main_container"}
       = yield

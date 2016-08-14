@@ -8,9 +8,10 @@ Recordly will be an application that allows for users to input and store their r
 
 user can add a new album and input its data, including 
     !album name
-    artist name (Songs with their titles are optional!)
+    !artist name 
+    Songs with their titles 
 
-User can delete an album from his collection
+!User can delete an album from his collection
 
 User can click on an album to see 
   Artist on the Album, with link to the Artists other work
@@ -18,7 +19,7 @@ User can click on an album to see
 
 General User views
 Views:
-  Album Index with artist from each album
+  !Album Index with artist from each album
 
   Album Show with songs index from one album
 
@@ -32,8 +33,8 @@ Implement restrictions below directly in DB and rescue error
   Duplicate song titles on the same album should not be allowed. 
 
 Site should have at least one each of 
-  an AJAX GET 
-  and AJAX POST (or some other modification type verb).
+  !an AJAX GET 
+  !and AJAX POST (or some other modification type verb).
 
 User should be able to "unfavorite" any favorited item their collection
 !User should be able to "favorite" any album, song, or artist from any album in their collection

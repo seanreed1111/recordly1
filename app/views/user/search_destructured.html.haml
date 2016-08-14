@@ -1,5 +1,5 @@
 %h1 Search Results
-
+=params
 .albums
   -if @albums.present?
     %h2 Albums
@@ -13,3 +13,5 @@
     %h2 Songs
     =render @songs
 %h1 End of Search Results
+%br
+=link_to "Home", root_path
