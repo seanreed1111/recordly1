@@ -1,8 +1,10 @@
 .container
-  =form_for @collection, url: @url, method: @method do |f|
+  =form_for :collection, url: @url, method: @method do |f|
     =fields_for :album do |a|
-      =a.label :name
-      =a.text_field :name
-      =a.hidden_field :album_id, value:@collection.album_id
+      =a.label :album_name
+      =a.text_field :name, id: "Album Name"
+    =fields_for :artist do |aa|
+      =aa.label :artist_name
+      =aa.text_field :name, id: "Artist Name"
     %br
     =f.submit 'Submit', class: 'btn btn-success'

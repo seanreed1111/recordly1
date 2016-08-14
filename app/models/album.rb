@@ -13,6 +13,8 @@ class Album < ActiveRecord::Base
   accepts_nested_attributes_for :songs 
 
   belongs_to :artist
+  accepts_nested_attributes_for :artist
+
   # validates_uniqueness_of :name,
   #                         conditions: -> 
    #                         {where self.artist.albums 

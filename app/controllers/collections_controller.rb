@@ -2,7 +2,7 @@ class CollectionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_collection, only:[:show, :edit, :update, :destroy]
   before_action :set_album, only: [:show, :edit, :update]
- 
+
 
   def index
     @albums = current_user.albums
@@ -17,6 +17,11 @@ class CollectionsController < ApplicationController
 
   def create
     @album = current_user.albums.new(album_params)
+
+    puts "params = #{params}"
+    puts "album_params = #{album_params}"
+    puts "artist_params = #{artist_params}"
+
     respond_to do |format|
       if (@album.save)
         @collection = current_user.collections.create(album_id: @album.id)
@@ -71,13 +76,21 @@ class CollectionsController < ApplicationController
     @album = Album.find(@collection.album_id)
   end
 
+  def set_artist_to_album
 
-  def album_params
-     params.require(:album).permit(:name, :id)
   end
 
+  def album_params
+     params.require(:album).permit(:name)
+  end
+
+  def artist_params
+     params.require(:artist).permit(:name)
+  end
+
+
   def collection_params
-    params.require(:collection).permit(:id, :user_id, :album_id, album_attributes: [:name, :id])
+    params.require(:collection).permit(:id, :user_id, :album_id, :album, album_attributes: [:name, :id, artist_attributes:[:name, :id]])
   end
 
 end

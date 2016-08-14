@@ -1,13 +1,13 @@
-set up so it shows up in a sidebar 
-via a 'yield :search' on the app layout page
-%h1 Search Results
-- if(@results)
-  =@results.each do |result|
-    / destructure the 'result' object here for class and id 
-    =result #need to create a partial that shows Album, Artist, or Song
-    =link_to 'View Item', '#' #need to create link to Album, Artist, or Song 
--else
-  No Results
+/ set up so it shows up in a sidebar 
+/ via a 'yield :search' on the app layout page
+/ %h1 Search Results
+/ - if(@results)
+/   =@results.each do |result|
+/     / destructure the 'result' object here for class and id 
+/     =result #need to create a partial that shows Album, Artist, or Song
+/     =link_to 'View Item', '#' #need to create link to Album, Artist, or Song 
+/ -else
+/   No Results
 
-%br
-=link_to "Home", root_path
+/ %br
+/ =link_to "Home", root_path
