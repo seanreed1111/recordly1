@@ -2,7 +2,9 @@
 .albums
   -@albums.each do |album|
     .album{id: "album_#{album.id}"}
-      = album.name
+      %h3= album.name
+      -if(album.artist)
+        %h4=album.artist.name
       .inline-links
         -if(current_user.favorite?(album))
           = link_to 'Remove From Favorites',album_favorite_path(album, current_user.favorite(album)), method: :delete

@@ -13,6 +13,11 @@ class CollectionsController < ApplicationController
     @collection = current_user.collections.new
     @url = collections_path
     @method = :post
+
+    respond_to do |format|
+      format.html 
+      format.js
+    end
   end
 
   def create

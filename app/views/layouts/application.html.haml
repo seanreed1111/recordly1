@@ -27,13 +27,5 @@
         = current_user.email
         =link_to "Sign out", destroy_user_session_path, method: :delete
 
-    .container
+    .container{id: "main_container"}
       = yield
-    %br
-    .container
-      Params
-      =params
-    %br
-    .container.debug
-      debugging console
-      =debug(assigns)

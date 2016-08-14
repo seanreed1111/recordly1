@@ -1,0 +1,5 @@
+$("#new_album_link").hide();
+var $form = $("<%= j render(file: 'collections/_form.html.haml') %>");
+$('#show_album').slideUp("slow", function(){
+  $(this).html($form).slideDown("slow");
+});

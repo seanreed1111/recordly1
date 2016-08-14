@@ -1,4 +1,4 @@
-.album
+.album#show_album
   %h2= @album.name
   -if @album.artist
     %h4 
@@ -13,5 +13,5 @@
     = link_to 'Destroy', @collection, method: :delete, data: { :confirm => 'Are you sure?' }
 
 %br
-= link_to 'Add New Album', new_collection_path
+= link_to 'Add New Album', new_collection_path, format: :js, remote: true, id: 'new_album_link'
 = link_to 'Home', root_path
