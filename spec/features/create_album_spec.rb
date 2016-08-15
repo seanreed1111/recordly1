@@ -12,7 +12,7 @@ RSpec.feature "Signed in users can create an new album" do
     click_link "Add New Album"
 
     fill_in "Album Name", with: "My New Album"
-    click_button "Submit"
+    click_button "Submit Album"
 
     expect(page).to have_content "Album was successfully added to your collection."
 
@@ -24,7 +24,7 @@ RSpec.feature "Signed in users can create an new album" do
 
     fill_in 'Album Name', with: "My New Album"
     fill_in "Artist Name", with: "Artist Name"
-    click_button "Submit"
+    click_button "Submit Album"
 
     expect(page).to have_content "Album was successfully added to your collection."
 

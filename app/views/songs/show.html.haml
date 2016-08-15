@@ -1,0 +1,8 @@
+.song#show_song
+  %h2= @song.name
+  %h4 By #{@song.artist}
+  %h4 Album #{@song.album}
+  %br
+  =link_to 'Home', root_path
+  \|
+  =link_to 'Back', :back

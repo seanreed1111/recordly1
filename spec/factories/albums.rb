@@ -1,6 +1,16 @@
 FactoryGirl.define do
   factory :album do
-    name "MyAlbum"
+    name "MyAlbumName"
     artist
+
+    factory :album_with_songs do
+      transient do 
+        songs_count 5
+      end
+
+      after(:create) do |album, evaluator|
+        create_list(generate :song_sequence, evaluator.songs_count, album: album)
+      end
+    end
   end
 end

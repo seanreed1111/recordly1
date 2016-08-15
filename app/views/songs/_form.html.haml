@@ -1,0 +1,8 @@
+.container
+  =form_for :song do |f|
+    =f.label :name
+    =f.text_field :name, id: "Song Name"
+    =fields_for :album do |ff|
+      =ff.label :name, id:"Album Name"
+      =ff.text_field :name
+    =f.submit 'Submit', class: 'btn btn-success'

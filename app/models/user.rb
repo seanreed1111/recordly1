@@ -114,6 +114,16 @@ class User < ActiveRecord::Base
     }
   }
 
+  def find_albums_by_artist_by_id(artist_id)
+    self.albums.where(artist_id: artist_id)
+  end
+
+  def find_albums_by_artist_by_name(artist_name)
+    artist = self.artists.where(name: artist_name).first
+    self.albums.where(artist_id: artist.id)
+  end
+
+
    # [Collection] -> [Integer]
   def album_ids
     self.collections.map {|collection| collection.album_id}

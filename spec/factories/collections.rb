@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :collection do
-    user nil
-    album nil
+    user
+    album
   end
 end

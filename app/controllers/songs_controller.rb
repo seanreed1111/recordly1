@@ -1,33 +1,35 @@
 class SongsController < ApplicationController
-  before_action :set_song, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :set_album, only: [:create]
+  before_action :set_song, only: [:show, :edit, :update]
 
-  # GET /songs
-  # GET /songs.json
+# user inputs song name
+#create a new song object with that name
+#assign the correct album id to song.album_id
+# save and/or update
+
   def index
-    @songs = Song.all
+    @songs = current_user.songs
   end
 
-  # GET /songs/1
-  # GET /songs/1.json
   def show
   end
 
-  # GET /songs/new
   def new
     @song = Song.new
   end
 
-  # GET /songs/1/edit
+ 
   def edit
   end
 
-  # POST /songs
-  # POST /songs.json
+
   def create
     @song = Song.new(song_params)
-
+    @song.album_id = @album.id #album data must be present
     respond_to do |format|
       if @song.save
+
         format.html { redirect_to @song, notice: 'Song was successfully created.' }
         format.json { render :show, status: :created, location: @song }
       else
@@ -37,11 +39,10 @@ class SongsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /songs/1
-  # PATCH/PUT /songs/1.json
+
   def update
     respond_to do |format|
-      if @song.update(song_params)
+      if @song.update(song_params) #album data must be present
         format.html { redirect_to @song, notice: 'Song was successfully updated.' }
         format.json { render :show, status: :ok, location: @song }
       else
@@ -51,24 +52,25 @@ class SongsController < ApplicationController
     end
   end
 
-  # DELETE /songs/1
-  # DELETE /songs/1.json
-  def destroy
-    @song.destroy
-    respond_to do |format|
-      format.html { redirect_to songs_url, notice: 'Song was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_song
+      @song = Song.find(params[:id])
+    end
 
+    def set_album
+      @album = Album.find(album_params[:id])
+    end
+
+
+    def album_params
+      params.require(:album).permit(:name, :id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def song_params
-      params.require(:song).permit(:name, :artist_id, :album_id)
+      params.require(:song).permit(:name,:id, :album_id)
     end
 end

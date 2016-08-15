@@ -1,5 +1,3 @@
-- flash.each do |key, value|
+- flash.each do |key, message|
   %div{:class => "alert alert-#{key}"}
-    %ul
-      %li
-        = value
+    = message

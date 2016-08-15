@@ -3,7 +3,6 @@ class UserController < ApplicationController
 
   def search
     safe_text = params[:search] #unneeded. PgSearch already makes sure text is safe
-    #@results = current_user.search(safe_text) #uses PgSearch
     destructured = current_user.search_destructured(safe_text)
     @albums = destructured[0]
     @artists = destructured[1]

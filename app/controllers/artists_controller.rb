@@ -1,11 +1,13 @@
 class ArtistsController < ApplicationController
-  before_action :set_artist, only: [:show, :edit, :update, :destroy]
-  before_action :set_album, only: [:new, :create, :edit, :update ]
+  before_action :authenticate_user!
+  before_action :set_artist, only: [:show, :edit, :update]
+  before_action :set_album, only: [:create]
+  before_action :set_albums, only: [:show]
 
   # GET /artists
   # GET /artists.json
   def index
-    @artists = current_user.artists.all
+    @artists = current_user.artists
   end
 
   # GET /artists/1
@@ -25,7 +27,7 @@ class ArtistsController < ApplicationController
   # POST /artists
   # POST /artists.json
   def create
-    @artist = Artist.new(artist_params)
+    @artist = Artist.new(artist_params) #album data must be present
 
     respond_to do |format|
       if @artist.save
@@ -42,7 +44,7 @@ class ArtistsController < ApplicationController
   # PATCH/PUT /artists/1.json
   def update
     respond_to do |format|
-      if @artist.update(artist_params)
+      if @artist.update(artist_params) #album data must be present
         format.html { redirect_to @artist, notice: 'Artist was successfully updated.' }
         format.json { render :show, status: :ok, location: @artist }
       else
@@ -52,25 +54,6 @@ class ArtistsController < ApplicationController
     end
   end
 
-  # DELETE /artists/1
-  # DELETE /artists/1.json
-  def destroy
-    @artist.destroy
-    respond_to do |format|
-      format.html { redirect_to artists_url, notice: 'Artist was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
-  def remove_artist 
-    #remove artist from an album but NOT the database
-    #this is just a convenience method
-    # it is an update(PUT) to the album, 
-    #it sets artist = nil directly w/o requiring a form
-    
-  end
-
-  end
 
   private
     def set_artist
@@ -78,8 +61,13 @@ class ArtistsController < ApplicationController
     end
 
     def set_album
-
+      @album = Album.find()
     end
+
+    def set_albums
+      @albums = current_user.find_albums_by_artist_by_id(@artist.id)
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def artist_params
       params.require(:artist).permit(:name)
