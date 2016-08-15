@@ -8,9 +8,12 @@
 
   %body
     .container
+      =render 'layouts/navbar'
+    .container
       =link_to content_tag(:h1, "Welcome to Recordly!"), root_path
     .container
       =render 'layouts/messages'
+
 
       =form_tag(user_search_path, method: :post, id:"search_form", class: "navbar-form navbar-left") do
         .form-group
