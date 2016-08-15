@@ -9,16 +9,16 @@
   %br
 
   .inline-links
-    = link_to "Add Song To Album", new_album_songs_path(@album), class: "btn btn-primary", class: "btn btn-primary"
+    = link_to "Add Song To Album", new_album_songs_path(@album), class: "btn btn-primary", class: "btn btn-primary btn-sm"
 
     -if(current_user.favorite?(@album))
-      = link_to 'Remove From Favorites', album_favorite_path(@album, current_user.favorite(@album)), method: :delete,class: "btn btn-alert"
+      = link_to 'Remove From Favorites', album_favorite_path(@album, current_user.favorite(@album)), method: :delete, class: "btn btn-primary btn-sm"
     -else
-      = link_to 'Add Album to Favorites', album_favorites_path(@album), method: :post, class: "btn btn-primary"
+      = link_to 'Add Album to Favorites', album_favorites_path(@album), method: :post, class: "btn btn-primary btn-sm"
     %br
     = link_to 'Edit Album', edit_collection_path(@collection), class: "btn btn-primary"
-    = link_to 'Destroy', @collection, method: :delete, data: { :confirm => 'Are you sure?' }, class: "btn btn-danger"
+    = link_to 'Destroy', @collection, method: :delete, data: { :confirm => 'Are you sure?' }, class: "btn btn-primary btn-sm"
 
 %br
-= link_to 'Add New Album', new_collection_path, format: :js, remote: true, id: 'new_album_link', class: "btn btn-primary"
-= link_to 'Home', root_path, class: "btn btn-primary"
+= link_to 'Add New Album', new_collection_path, format: :js, remote: true, id: 'new_album_link', class: "btn btn-primary btn-sm"
+= link_to 'Back', :back, class: "btn btn-primary btn-sm"

@@ -3,7 +3,5 @@
   %h4 By #{@song.artist.name}
   %h4 Album #{@song.album.name}
   %br
-  =link_to "Add Song to Album", new_album_songs_path(@song.album), class: "btn btn-primary"
-  =link_to 'Home', root_path, class: "btn btn-primary"
-  \|
-  =link_to 'Back', :back, class: "btn btn-primary"
+  =link_to "Add Song to Album", new_album_songs_path(@song.album), class: "btn btn-primary btn-sm"
+  =link_to 'Home', root_path, class: "btn btn-primary btn-sm"

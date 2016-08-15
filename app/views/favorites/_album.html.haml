@@ -1,11 +1,10 @@
-%h2 Albums
-.album
-  %h4 Album Name
-  = album.name
+.album{id: "album_#{album.id}", class: "album_#{album.name}"}
+  %h3= album.name
+  -if(album.artist)
+    %h4=album.artist.name
   .inline-links
-    = link_to 'Remove From Favorites','#', id: album.id, :method => :delete, :data => { :confirm => 'Are you sure?' }
-    = link_to 'Show', '#'
-    = link_to 'Edit', '#'
-    = link_to 'Destroy', '#', id: album.id, :method => :delete, :data => { :confirm => 'Are you sure?' }
-%br
-= link_to 'Home', root_path
+    -if(current_user.favorite?(album))
+      = link_to 'Remove From Favorites',album_favorite_path(album, current_user.favorite(album)), method: :delete, class: "btn btn-primary btn-sm"
+    -else
+      = link_to 'Add to Favorites', album_favorites_path(album), method: :post, class: "btn btn-primary btn-sm"
+=link_to "Home", root_path, class: "btn btn-primary btn-sm" 

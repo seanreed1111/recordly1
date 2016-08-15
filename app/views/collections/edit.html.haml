@@ -4,10 +4,9 @@
 
 .inline-links
   -if(current_user.favorite?(@album))
-    = link_to 'Remove From Favorites', album_favorite_path(@album, current_user.favorite(@album)), method: :delete, class: "btn btn-alert"
+    = link_to 'Remove From Favorites', album_favorite_path(@album, current_user.favorite(@album)), method: :delete, class: "btn btn-primary btn-sm"
   -else
-    = link_to 'Add Album to Favorites', album_favorites_path(@album), method: :post, class: "btn btn-primary"
+    = link_to 'Add Album to Favorites', album_favorites_path(@album), method: :post, class: "btn btn-primary btn-sm"
 
 %br
-  = link_to 'Show', collection_path(@collection), class: "btn btn-primary"
-  = link_to 'Back', :back, class: "btn btn-primary"
+  = link_to 'Show', collection_path(@collection), class: "btn btn-primary btn-sm"
