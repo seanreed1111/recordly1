@@ -24,11 +24,11 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
-    @favorite = @favoritable.favorites.where(user_id: current_user.id)
+    @favorite = @favoritable.favorites.where(user_id: current_user.id).first
+    puts "@favorite = #{@favorite}"
     if @favorite.destroy
-      redirect_to :back, alert:'Favorite has been removed'
-    else
-      redirect_to :back, notice: 'Errors prevented creation of favorite.'
+  #    redirect_to controller: :favorites, action: :index, alert:'Favorite has been removed'
+      redirect_to :back
     end
   end
 
