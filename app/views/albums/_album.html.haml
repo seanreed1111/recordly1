@@ -8,8 +8,8 @@
     -else
       = link_to 'Add to Favorites', album_favorites_path(album), method: :post, class: "btn btn-primary"
 
-    = link_to 'Show', collection_path(album.my_collection.id), id: "Show Album", class: "btn btn-primary"
+    = link_to 'Show Album', collection_path(album.my_collection.id), id: "Show Album", class: "btn btn-primary"
 
-    = link_to 'Edit', edit_collection_path(album.my_collection.id), id:"Edit Album", class: "btn btn-primary"
+    = link_to 'Edit Album', edit_collection_path(album.my_collection.id), id:"Edit Album", class: "btn btn-primary"
 
-    = link_to 'Destroy', album.my_collection, id: "Destroy Album",:method => :delete, :data => { :confirm => 'Are you sure?' }, remote: true, class: "btn btn-danger"
+    = link_to 'Destroy Album', album.my_collection, id: "Destroy Album",:method => :delete, :data => { :confirm => 'Are you sure?' }, remote: true, class: "btn btn-danger"

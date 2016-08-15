@@ -31,15 +31,15 @@ class SongsController < ApplicationController
       @song.album_id = @album.id
       respond_to do |format|
         if @song.save      
-          format.html { redirect_to @song, notice: 'Song was successfully created.' }
-          format.json { render :show, status: :created, location: @song }
+          format.html { redirect_to @collection, notice: 'Song was successfully created.' }
+          format.json { render :show, status: :created, location: @collection }
         else
-          format.html { render :new , alert: "Song has not been created."}
-          format.json { render json: @song.errors, status: :unprocessable_entity }
+          format.html { render :new , now: "Song has not been created."}
+          format.json { render json: @collection.errors, status: :unprocessable_entity }
         end
       end
     else
-      render :new, alert: "Song name cannot be duplicate."
+      render :new, now: "Song name cannot be duplicate."
     end
   end
 
@@ -76,5 +76,9 @@ class SongsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def song_params
       params.require(:song).permit(:name,:id, :album, :album_id)
+    end
+
+    def find_collection
+      @collection = current_user.collections.find(album_id: @album.id)
     end
 end
