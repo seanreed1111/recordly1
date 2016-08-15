@@ -11,10 +11,11 @@
       =link_to content_tag(:h1, "Welcome to Recordly!"), root_path
     .container
       =render 'layouts/messages'
-    .container
+    %form.navbar-form.navbar-left
       =form_tag(user_search_path, method: :post, id:"search_form") do
-        =text_field_tag :search, params[:search], placeholder: "Search Your Collection"
-        =submit_tag "Search!"
+        .form-group
+          =text_field_tag :search, params[:search], placeholder: "Search Your Collection", class: "form-control"
+          =submit_tag "Search!", class:"btn btn-default"
 
     %br
     .container

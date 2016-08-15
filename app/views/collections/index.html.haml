@@ -1,18 +1,6 @@
 %h1 Listing albums
 .albums
-  -@albums.each do |album|
-    .album{id: "album_#{album.id}"}
-      %h3= album.name
-      -if(album.artist)
-        %h4=album.artist.name
-      .inline-links
-        -if(current_user.favorite?(album))
-          = link_to 'Remove From Favorites',album_favorite_path(album, current_user.favorite(album)), method: :delete
-        -else
-          = link_to 'Add to Favorites', album_favorites_path(album), method: :post
-        = link_to 'Show', collection_path(album.my_collection.id)
-        = link_to 'Edit', edit_collection_path(album.my_collection.id)
-        = link_to 'Destroy', album.my_collection, :method => :delete, :data => { :confirm => 'Are you sure?' }, remote: true
+  =render @albums
 
-= link_to 'Add New Album', new_collection_path
 %br
+= link_to 'Add New Album', new_collection_path
