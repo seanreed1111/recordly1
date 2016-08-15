@@ -25,7 +25,7 @@ class FavoritesController < ApplicationController
 
   def destroy
     @favorite = @favoritable.favorites.where(user_id: current_user.id).first
-    puts "@favorite = #{@favorite}"
+
     if @favorite.destroy
   #    redirect_to controller: :favorites, action: :index, alert:'Favorite has been removed'
       redirect_to :back

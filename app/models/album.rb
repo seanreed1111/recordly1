@@ -47,6 +47,10 @@ class Album < ActiveRecord::Base
   result
  end
 
+ def all_album_name_of_artist_name_unique?(album_name, artist_name)
+  
+ end
+
   def my_collection
     self.collections.where(album_id: self.id).first
   end
