@@ -20,10 +20,21 @@ class CollectionsController < ApplicationController
     end
   end
 
+
+#one method of dealing with album uniqueness
+#adds artist id to album based on artist's name
+#    current_user.add_artist_to_album!(@album, artist_params[:name]) 
+
   def create
 
     @album = current_user.albums.new(album_params)
-    current_user.add_artist_to_album!(@album, artist_params[:name])
+
+
+
+    #check for uniqueness of album name withing artists.albums
+    # do this validation before album save
+
+
     respond_to do |format|
       if (@album.save)
 

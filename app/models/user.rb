@@ -22,6 +22,28 @@ class User < ActiveRecord::Base
   has_many :favorited_songs, through: :favorites,
           source: :favoritable, source_type: 'Song'
 
+  #given an artist and new album object not yet to the collection
+  # is new album a duplicate?
+
+  # (Album, Artist) -> Bool
+  # if the artist for album_object is artist_object, is new album a duplicate?
+  def album_unique?(album_object, artist_object)
+
+    albums = self.albums.select{|album| album.artist.present?}
+    non_nil_albums = albums.select{|album| album.artist.name == artist_object.name} << album_object.name
+    non_nil_albums.length == non_nil_albums.uniq.length
+  end
+
+  #(String, String) -> Bool
+  def album_name_unique?(album_name, artist_name) 
+    album_names = self.albums.select{|album| album.artist.present?}
+                .select{|album| album.artist.name == artist_name}
+                .map{|album| album.name}
+
+    album_names.contains?(album_name)
+  end
+
+
  #(Album, String) -> ()
   def add_artist_to_album!(album_object, artist_name)
     if ((!album_object.artist) || album_object.artist.name != artist_name)
