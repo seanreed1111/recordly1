@@ -4,7 +4,8 @@
     %h4 
       Artist: #{@album.artist.name}
   .inline-links
-    = link_to "Add Song To Album"
+    = link_to "Add Song To Album", album_songs_path(@album)
+
     -if(current_user.favorite?(@album))
       = link_to 'Remove From Favorites', album_favorite_path(@album, current_user.favorite(@album)), method: :delete
     -else
