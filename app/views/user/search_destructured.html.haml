@@ -1,17 +1,19 @@
-%h1 Search Results
-=params
+%h2 Search Results
+
 .albums
   -if @albums.present?
-    %h2 Albums
+    %h3 Albums
     =render @albums 
 .artists
   -if @artists.present?
-    %h2 Artists
+    %h3 Artists
     =render @artists
 .songs
   -if @songs.present?
-    %h2 Songs
+    %h3 Songs
     =render @songs
-%h1 End of Search Results
-%br
+
+%h2 End of Search Results
+
+
 =link_to "Home", root_path

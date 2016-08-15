@@ -12,6 +12,11 @@
     .container
       =render 'layouts/messages'
 
+      =form_tag(user_search_path, method: :post, id:"search_form", class: "navbar-form navbar-left") do
+        .form-group
+          =text_field_tag :search, params[:search], placeholder: "Search Your Collection", class: "form-control"
+          =submit_tag "Search!", class:"btn btn-default"
+
 
     %br
     .container
@@ -23,11 +28,6 @@
         Signed in as
         = current_user.email
         =link_to "Sign out", destroy_user_session_path, method: :delete
-        %br
-        .container{id: "search_container"}
-          =form_tag(user_search_path, method: :post, id:"search_form") do
-            =text_field_tag :search, params[:search], placeholder: "Search Your Collection"
-            =submit_tag "Search!"
         %br
 
     .container{id: "main_container"}
