@@ -3,7 +3,7 @@
   -if(@albums.present?)
     =render @albums
   -else
-    No Albums Yet! Add some albums to your collection..
+    %h3 No Albums Yet! Please add albums to your collection..
 
 %br
 = link_to 'Add New Album', new_collection_path

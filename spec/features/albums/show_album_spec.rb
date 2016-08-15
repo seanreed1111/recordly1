@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "Signed in users can show a single album" do
   let!(:user) {FactoryGirl.create(:user)}
-  let!(:album) {FactoryGirl.create(:album, name: "BackinBlack")}
+  let!(:album) {FactoryGirl.create(:album, name: "Sideways")}
   let!(:collection) {FactoryGirl.create(:collection, user:user, album:album)}
 
   before do
@@ -10,11 +10,11 @@ RSpec.feature "Signed in users can show a single album" do
     visit "/collections"
   end
 
-  scenario "album attributes" do
+  scenario "-show album attributes" do
 
-    page.find('.album_BackInBlack').click_link("Show Album")
+    page.find('.album_Sideways').click_link("Show Album")
 
-    expect(page).to have_content "BackinBlack"
+    expect(page).to have_content "Sideways"
   end
 
 
