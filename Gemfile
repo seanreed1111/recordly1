@@ -6,7 +6,7 @@ gem 'rails', '4.2.6'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.15'
 gem 'pg_search', '~> 1.0', '>= 1.0.6'
-gem 'reform-rails'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -53,8 +53,5 @@ end
 group :production do
   gem 'rails_12factor'
   gem 'puma'
-end
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
 end
 
