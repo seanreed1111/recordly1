@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :albums do
-    resources :favorites, only: [:create, :destroy]
-  end
+  # resources :albums do
+  #   resources :favorites, only: [:create, :destroy]
+  # end
+
+  # routes to create and destroy favorites
+  post "/albums/:album_id/favorites", to: "favorites#create", as: "album_favorites"
+  delete "/albums/:album_id/favorites/:id", to: "favorites#destroy", as: "album_favorite"
 
   resources :artists do
     resources :favorites, only: [:create, :destroy]
@@ -13,14 +17,12 @@ Rails.application.routes.draw do
     resources :favorites, only: [:create, :destroy]
   end
 
-  # get "/users/:id/albums/:id", to: "collections#show", as: "show_album"
-  
-  # get "/albums/:album_id/songs/new", to: "songs#new", as: "new_album_songs"
-  # post "/albums/:album_id/songs", to: "songs#create", as: "album_songs"
 
-  resources :albums do
-    resource :songs, only: [:new, :create]
-  end
+
+  
+  # Songs#New, Songs#Create
+  get "/albums/:album_id/songs/new", to: "songs#new", as: "new_album_songs"
+  post "/albums/:album_id/songs", to: "songs#create", as: "album_songs"
 
 
   resources :collections
@@ -29,3 +31,5 @@ Rails.application.routes.draw do
   post 'user/search'
   root "collections#index"
  end
+
+   #get "/users/:id/albums/:id", to: "collections#show", as: "show_album"

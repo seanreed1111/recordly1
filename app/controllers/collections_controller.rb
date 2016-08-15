@@ -73,6 +73,7 @@ class CollectionsController < ApplicationController
   private
 
   def set_collection
+    
     @collection = Collection.find(params[:id])
   end
 
