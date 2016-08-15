@@ -1,4 +1,4 @@
-.album{id: "album_#{album.id}"}
+.album{id: "album_#{album.id}", class: "album_#{album.name}"}
   %h3= album.name
   -if(album.artist)
     %h4=album.artist.name
@@ -8,8 +8,8 @@
     -else
       = link_to 'Add to Favorites', album_favorites_path(album), method: :post
     \|
-    = link_to 'Show', collection_path(album.my_collection.id)
+    = link_to 'Show', collection_path(album.my_collection.id), id: "Show Album"
     \|
-    = link_to 'Edit', edit_collection_path(album.my_collection.id)
+    = link_to 'Edit', edit_collection_path(album.my_collection.id), id:"Edit Album"
     \|
-    = link_to 'Destroy', album.my_collection, :method => :delete, :data => { :confirm => 'Are you sure?' }, remote: true
+    = link_to 'Destroy', album.my_collection, id: "Destroy Album",:method => :delete, :data => { :confirm => 'Are you sure?' }, remote: true

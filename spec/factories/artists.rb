@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :artist do
-    name "MyArtistName"
+    name "My Artist Name"
   end
 end

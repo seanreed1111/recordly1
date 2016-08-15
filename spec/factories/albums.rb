@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :album do
-    name "MyAlbumName"
+    name "My Album Name"
+    sequence(:id) {|n| "#{n}"}
     artist
 
     factory :album_with_songs do

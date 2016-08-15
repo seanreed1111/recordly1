@@ -48,7 +48,7 @@ class CollectionsController < ApplicationController
     current_user.add_artist_to_album!(@album, artist_params[:name])
     respond_to do |format|
       if (@album.update(album_params))
-        format.html { redirect_to @collection, notice: "Album was successfully added to your collection." }
+        format.html { redirect_to @collection, notice: "Album was successfully updated" }
          format.json { render :show, status: :created, location: @user }
       else
           format.html { render @collection, 
