@@ -1,6 +1,9 @@
 %h1 Listing albums
 .albums
-  =render @albums
+  -if(@albums.present?)
+    =render @albums
+  -else
+    No Albums Yet! Add some albums to your collection..
 
 %br
 = link_to 'Add New Album', new_collection_path
