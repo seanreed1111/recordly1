@@ -33,7 +33,7 @@ class SongsController < ApplicationController
         format.html { redirect_to @song, notice: 'Song was successfully created.' }
         format.json { render :show, status: :created, location: @song }
       else
-        format.html { render :new }
+        format.html { render :new , alert: "Song has not been created."}
         format.json { render json: @song.errors, status: :unprocessable_entity }
       end
     end
