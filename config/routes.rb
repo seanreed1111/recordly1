@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   
   post 'user/search'
   root "collections#index"
+  get '*unmatched_route', to: 'application#not_found'
  end
 
    #get "/users/:id/albums/:id", to: "collections#show", as: "show_album"

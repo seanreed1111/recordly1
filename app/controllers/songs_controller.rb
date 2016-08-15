@@ -27,16 +27,19 @@ class SongsController < ApplicationController
 
   def create
     @song = @album.songs.new(song_params)
-    @song.album_id = @album.id #album data must be present
-    respond_to do |format|
-      if @song.save
-
-        format.html { redirect_to @song, notice: 'Song was successfully created.' }
-        format.json { render :show, status: :created, location: @song }
-      else
-        format.html { render :new , alert: "Song has not been created."}
-        format.json { render json: @song.errors, status: :unprocessable_entity }
+    if @album.all_song_names_are_unique_with?(@song.name)
+      @song.album_id = @album.id
+      respond_to do |format|
+        if @song.save      
+          format.html { redirect_to @song, notice: 'Song was successfully created.' }
+          format.json { render :show, status: :created, location: @song }
+        else
+          format.html { render :new , alert: "Song has not been created."}
+          format.json { render json: @song.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      render :new, alert: "Song name cannot be duplicate."
     end
   end
 

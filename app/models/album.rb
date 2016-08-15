@@ -23,6 +23,17 @@ class Album < ActiveRecord::Base
   end
  end
 
+  def all_song_names_are_unique_with?(song_name)
+    result = true
+  my_songs = self.songs
+  my_song_names = my_songs.map{|song|song.name} << song_name
+  if (my_song_names.uniq.length != my_song_names.length)
+    result = false
+  end
+  result
+ end
+
+
 
 
   belongs_to :artist

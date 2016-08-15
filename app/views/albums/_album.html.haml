@@ -4,7 +4,7 @@
     %h4=album.artist.name
   .inline-links
     -if(current_user.favorite?(album))
-      = link_to 'Remove From Favorites',album_favorite_path(album, current_user.favorite(album)), method: :delete, class: "btn btn-alert"
+      = link_to 'Remove From Favorites',album_favorite_path(album, current_user.favorite(album)), method: :delete, class: "btn btn-danger"
     -else
       = link_to 'Add to Favorites', album_favorites_path(album), method: :post, class: "btn btn-primary"
 
