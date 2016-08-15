@@ -1,7 +1,7 @@
 .artist
   = artist.name
   -if(artist.albums.present?)
-    =render artist.albums
+    %h3=render artist.albums
 
   = link_to 'Show', artist, class: "btn btn-primary"
 
