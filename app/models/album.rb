@@ -37,6 +37,15 @@ class Album < ActiveRecord::Base
   result
  end
 
+ #perform check before saving
+ def all_albums_of_same_artist_unique?(album_object, artist_object)
+  result = false
+  album_names = artist_object.albums.map{|album|album.name}
+  if !album_names.include?(album_object.name)
+    result= true 
+  end
+  result
+ end
 
   def my_collection
     self.collections.where(album_id: self.id).first

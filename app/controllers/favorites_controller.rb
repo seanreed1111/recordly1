@@ -24,7 +24,7 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
-    @favorite = @favoritable.favorites.find(user_id: current_user.id)
+    @favorite = @favoritable.favorites.where(user_id: current_user.id)
     if @favorite.destroy
       redirect_to :back, alert:'Favorite has been removed'
     else
