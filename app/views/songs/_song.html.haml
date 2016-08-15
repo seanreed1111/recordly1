@@ -1,6 +1,7 @@
 .song
   = song.name
 
-  = link_to 'Edit', edit_song_path(song), class: "btn btn-primary"
+  = link_to 'Edit', edit_song_path(song)
 
-  = link_to 'Home', root_path, class: "btn btn-primary"
+  = link_to 'Home', root_path
+  = link_to "Show Albums by this Artist", artist_path(song.artist)
