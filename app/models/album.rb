@@ -12,9 +12,30 @@ class Album < ActiveRecord::Base
   has_many :songs
   accepts_nested_attributes_for :songs 
 
+ validate :all_song_names_are_unique
+
+ def all_song_names_are_unique
+  my_songs = self.songs
+  return if my_songs.blank?
+  my_song_names = my_songs.map{|song|song.name}
+  if (my_song_names.uniq.length != my_song_names.length)
+    errors.add(:song_names, "must all be unique")
+  end
+ end
+
+
+
   belongs_to :artist
   accepts_nested_attributes_for :artist
 
+  # validates :user_id, uniqueness: {
+  #   scope: [:favoritable_id, :favoritable_type],
+  #   message: 'can only favorite an item once'
+  # } 
+
+  #need to write my own SONG validator here
+  #song cannot be added to album unless 
+  #it has a unique name
   # validates_uniqueness_of :name,
   #                         conditions: -> 
    #                         {where self.artist.albums 

@@ -32,6 +32,10 @@ RSpec.feature "Add song to album from show album page" do
     fill_in "Song Name", with: "DoubleTrouble"
     page.find("#MySongForm").click_button("Submit")
 
+    visit "/collections"
+    page.find('.album_Cars').click_link("Show")
+    click_link "Add Song To Album"
+
     fill_in "Song Name", with: "DoubleTrouble"
     click_button "Submit"
 

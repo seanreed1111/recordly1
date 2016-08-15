@@ -3,17 +3,22 @@
   -if @album.artist
     %h4 
       Artist: #{@album.artist.name}
+  -if @album.songs.present?
+    %h5
+      =render @album.songs
+  %br
+
   .inline-links
-    = link_to "Add Song To Album", new_album_songs_path(@album)
+    = link_to "Add Song To Album", new_album_songs_path(@album), class: "btn btn-primary", class: "btn btn-primary"
 
     -if(current_user.favorite?(@album))
-      = link_to 'Remove From Favorites', album_favorite_path(@album, current_user.favorite(@album)), method: :delete
+      = link_to 'Remove From Favorites', album_favorite_path(@album, current_user.favorite(@album)), method: :delete,class: "btn btn-alert"
     -else
-      = link_to 'Add Album to Favorites', album_favorites_path(@album), method: :post
+      = link_to 'Add Album to Favorites', album_favorites_path(@album), method: :post, class: "btn btn-primary"
     %br
-    = link_to 'Edit Album', edit_collection_path(@collection)
-    = link_to 'Destroy', @collection, method: :delete, data: { :confirm => 'Are you sure?' }
+    = link_to 'Edit Album', edit_collection_path(@collection), class: "btn btn-primary"
+    = link_to 'Destroy', @collection, method: :delete, data: { :confirm => 'Are you sure?' }, class: "btn btn-danger"
 
 %br
-= link_to 'Add New Album', new_collection_path, format: :js, remote: true, id: 'new_album_link'
-= link_to 'Home', root_path
+= link_to 'Add New Album', new_collection_path, format: :js, remote: true, id: 'new_album_link', class: "btn btn-primary"
+= link_to 'Home', root_path, class: "btn btn-primary"

@@ -1,10 +1,8 @@
 .song
   = song.name
   .inline-links
-    = link_to 'Remove From Favorites', '#', id: song.id, :method => :delete, :data => { :confirm => 'Are you sure?' }
-    = link_to 'Show', '#'
-    = link_to 'Edit', '#'
-    = link_to 'Destroy', "#", id: song.id, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    = link_to 'Remove From Favorites', '#', id: song.id, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-alert"
+
 %br
 = link_to 'Home', root_path
 = link_to 'Back', favorites_path

@@ -4,12 +4,12 @@
     %h4=album.artist.name
   .inline-links
     -if(current_user.favorite?(album))
-      = link_to 'Remove From Favorites',album_favorite_path(album, current_user.favorite(album)), method: :delete
+      = link_to 'Remove From Favorites',album_favorite_path(album, current_user.favorite(album)), method: :delete, class: "btn btn-alert"
     -else
-      = link_to 'Add to Favorites', album_favorites_path(album), method: :post
-    \|
-    = link_to 'Show', collection_path(album.my_collection.id), id: "Show Album"
-    \|
-    = link_to 'Edit', edit_collection_path(album.my_collection.id), id:"Edit Album"
-    \|
-    = link_to 'Destroy', album.my_collection, id: "Destroy Album",:method => :delete, :data => { :confirm => 'Are you sure?' }, remote: true
+      = link_to 'Add to Favorites', album_favorites_path(album), method: :post, class: "btn btn-primary"
+
+    = link_to 'Show', collection_path(album.my_collection.id), id: "Show Album", class: "btn btn-primary"
+
+    = link_to 'Edit', edit_collection_path(album.my_collection.id), id:"Edit Album", class: "btn btn-primary"
+
+    = link_to 'Destroy', album.my_collection, id: "Destroy Album",:method => :delete, :data => { :confirm => 'Are you sure?' }, remote: true, class: "btn btn-danger"
