@@ -45,6 +45,7 @@ class User < ActiveRecord::Base
   end
 
 
+#adds check for uniqueness of combo (artist, album_name)
  #(Album, String) -> ()
   def add_artist_to_album!(album_object, artist_name)
     if ((!album_object.artist) || album_object.artist.name != artist_name)

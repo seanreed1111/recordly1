@@ -47,11 +47,8 @@ class Album < ActiveRecord::Base
   result
  end
 
- def all_albums_artist_name_unique?(album_name, artist_name)
-  result = false
-  artist
-
-  result
+ def all_album_name_of_artist_name_unique?(album_name, artist_name)
+  
  end
 
   def my_collection
