@@ -136,7 +136,10 @@ class User < ActiveRecord::Base
       }
     }
   }
-
+  
+  def roll_your_own(search_string)
+    
+  end
   def find_albums_by_artist_by_id(artist_id)
     self.albums.where(artist_id: artist_id)
   end
