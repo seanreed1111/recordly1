@@ -40,7 +40,8 @@ class User < ActiveRecord::Base
                 .select{|album| album.artist.name == artist_name}
                 .map{|album| album.name}
 
-    album_names.contains?(album_name)
+    album_names.select{|name| name == album_name}.blank?
+ 
   end
 
 
