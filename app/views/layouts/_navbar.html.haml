@@ -19,11 +19,17 @@
           =link_to "Your Songs", songs_path
         %li
           =link_to "See Your Favorites", favorites_path
+   
+      =form_tag(search_path, method: "get", id: "search-form") do
+        .form-group=text_field_tag :search, params[:search], placeholder: "Search Your Collection", class: "form-control"
+        =submit_tag "Search", class: "btn btn-default"
 
-      %form.navbar-form.navbar-right
-        .form-group
-          %input.form-control{:placeholder => "Search Your Collection", :type => "text"}/
-        %button.btn.btn-default{:type => "submit"} Submit
+      / %form{url: search, method:"post", class: "navbar-form navbar-right"}
+      /   .form-group
+      /     %input.form-control{:placeholder => "Search Your Collection", :type => "text"}/
+      /   %button.btn.btn-default{:type => "submit"} Submit
+
+
     %br
     .nav.navbar-nav.navbar-right
       -unless user_signed_in?

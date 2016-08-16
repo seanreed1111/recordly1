@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   resources :collections
   resources :favorites, only: [:index]
   
-  post 'user/search'
+  get 'user/search', to: "user#search", as: "search"
   root "collections#index"
   get '*unmatched_route', to: 'application#not_found'
  end
