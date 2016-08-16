@@ -5,6 +5,7 @@ RSpec.feature "Add song to album from show album page" do
   let!(:album) {FactoryGirl.create(:album, name: "Cars")}
   let!(:collection) {FactoryGirl.create(:collection, user:user, album:album)}
 
+  before(:each) {pending "add ids for RSpec to find entry points"}
   before do
     login_as(user)
     visit "/collections"
